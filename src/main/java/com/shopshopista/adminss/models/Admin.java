@@ -1,5 +1,5 @@
 
-package models;
+package com.shopshopista.adminss.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

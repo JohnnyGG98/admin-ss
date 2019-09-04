@@ -1,8 +1,9 @@
 
-package controllers.version1;
+package com.shopshopista.adminss.controllers.v1;
 
 import java.util.List;
-import models.Admin;
+import com.shopshopista.adminss.models.Admin;
+import com.shopshopista.adminss.repositorys.AdminRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import repositorys.AdminRep;
 
 
 @RestController
