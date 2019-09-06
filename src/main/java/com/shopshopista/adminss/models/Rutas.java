@@ -22,7 +22,7 @@ public class Rutas {
     @Column(name = "rut_activo")
     private boolean rut_activo;
     
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "Admins", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Permisos> permiso;
 

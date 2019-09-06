@@ -1,4 +1,3 @@
-
 package com.shopshopista.adminss.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -6,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Admins")
 public class Admin {
-    
+
     @Id
     private Long id_admin;
     @Column(name = "adm_user", nullable = false)
@@ -22,13 +22,13 @@ public class Admin {
     private String adm_pass;
     @Column(name = "adm_activo", nullable = false)
     private boolean adm_activo;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Admins")
+
+    /*@JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "Admin")
+    private List<HistorialRutasAdmin> histRutasAdmin;*/
+
     @JsonManagedReference
-    private List<HistorialRutasAdmin> histRutasAdmin;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Admins")
-    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "admin")
     private List<Permisos> permiso;
 
     public Admin() {
@@ -72,15 +72,6 @@ public class Admin {
     public void setAdm_activo(boolean adm_activo) {
         this.adm_activo = adm_activo;
     }
-
-    public List<HistorialRutasAdmin> getHistRutasAdmin() {
-        return histRutasAdmin;
-    }
-
-    public void setHistRutasAdmin(List<HistorialRutasAdmin> histRutasAdmin) {
-        this.histRutasAdmin = histRutasAdmin;
-    }
-
     public List<Permisos> getPermiso() {
         return permiso;
     }
@@ -88,7 +79,5 @@ public class Admin {
     public void setPermiso(List<Permisos> permiso) {
         this.permiso = permiso;
     }
-    
-    
-    
+
 }
