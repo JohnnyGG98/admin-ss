@@ -1,9 +1,13 @@
 
 package com.shopshopista.adminss.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +22,14 @@ public class Admin {
     private String adm_pass;
     @Column(name = "adm_activo", nullable = false)
     private boolean adm_activo;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Admins")
+    @JsonManagedReference
+    private List<HistorialRutasAdmin> histRutasAdmin;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Admins")
+    @JsonManagedReference
+    private List<Permisos> permiso;
 
     public Admin() {
     }
@@ -59,6 +71,22 @@ public class Admin {
 
     public void setAdm_activo(boolean adm_activo) {
         this.adm_activo = adm_activo;
+    }
+
+    public List<HistorialRutasAdmin> getHistRutasAdmin() {
+        return histRutasAdmin;
+    }
+
+    public void setHistRutasAdmin(List<HistorialRutasAdmin> histRutasAdmin) {
+        this.histRutasAdmin = histRutasAdmin;
+    }
+
+    public List<Permisos> getPermiso() {
+        return permiso;
+    }
+
+    public void setPermiso(List<Permisos> permiso) {
+        this.permiso = permiso;
     }
     
     
