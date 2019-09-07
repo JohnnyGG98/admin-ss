@@ -1,10 +1,14 @@
 
-package com.shopshopista.adminss.models;
+package com.shopshopista.adminss.models.Admins;
 
+import com.shopshopista.adminss.models.Admins.Admin;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,6 +19,7 @@ import javax.persistence.Table;
 public class HistorialRutasAdmin {
     
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id_historial_ruta_admin;
     @Column(name = "hiru_ruta", nullable = false)
     private String hiru_ruta;
@@ -22,11 +27,12 @@ public class HistorialRutasAdmin {
     private boolean hiru_activo;
     
     @JsonBackReference
-    @JoinColumn(name = "id_admin", referencedColumnName = "id_admin")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_admin",referencedColumnName = "id_admin")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Admin admin;
 
     public HistorialRutasAdmin() {
+        
     }
 
     public HistorialRutasAdmin(Long id_historial_ruta_admin, String hiru_ruta, boolean hiru_activo, Admin admin) {

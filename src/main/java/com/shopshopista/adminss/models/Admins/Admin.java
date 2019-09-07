@@ -1,4 +1,4 @@
-package com.shopshopista.adminss.models;
+package com.shopshopista.adminss.models.Admins;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -15,6 +17,7 @@ import javax.persistence.Table;
 public class Admin {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id_admin;
     @Column(name = "adm_user", nullable = false)
     private String adm_user;
@@ -23,9 +26,9 @@ public class Admin {
     @Column(name = "adm_activo", nullable = false)
     private boolean adm_activo;
 
-    /*@JsonManagedReference
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "Admin")
-    private List<HistorialRutasAdmin> histRutasAdmin;*/
+    @JsonManagedReference
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "admin")
+    private List<HistorialRutasAdmin> histRutasAdmin;
 
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "admin")

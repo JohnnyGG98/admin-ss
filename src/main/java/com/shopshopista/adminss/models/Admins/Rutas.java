@@ -1,12 +1,15 @@
 
-package com.shopshopista.adminss.models;
+package com.shopshopista.adminss.models.Admins;
 
+import com.shopshopista.adminss.models.Admins.Permisos;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -16,13 +19,14 @@ import javax.persistence.Table;
 public class Rutas {
     
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id_ruta;
     @Column(name = "rut_url", nullable = false)
     private String rut_url;
     @Column(name = "rut_activo")
     private boolean rut_activo;
     
-    @OneToMany(mappedBy = "Admins", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "rutas", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Permisos> permiso;
 

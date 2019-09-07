@@ -1,9 +1,11 @@
 
-package com.shopshopista.adminss.models;
+package com.shopshopista.adminss.models.Admins;
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -13,6 +15,7 @@ public class VendedoresBloqueados {
     
     //Falta foránea
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id_vendedor_bloqueado;
     @Column(name = "vebl_fecha_bloqueo", nullable = false)
     private Date vebl_fecha_bloqueo;

@@ -1,11 +1,14 @@
 
-package com.shopshopista.adminss.models;
+package com.shopshopista.adminss.models.Admins;
 
+import com.shopshopista.adminss.models.Admins.Admin;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,6 +19,7 @@ import javax.persistence.Table;
 public class Permisos {
     
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id_permiso;
     @Column(name = "prem_activo")
     private boolean prem_activo;

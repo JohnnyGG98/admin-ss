@@ -1,9 +1,11 @@
 
-package com.shopshopista.adminss.models;
+package com.shopshopista.adminss.models.Admins;
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,6 +14,7 @@ import javax.persistence.Table;
 public class HistorialRutasVisitas {
     
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id_historial_ruta_visitas;
     @Column(name = "hruv_ruta", nullable = false)
     private String hruv_ruta;

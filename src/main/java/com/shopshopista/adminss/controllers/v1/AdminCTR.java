@@ -2,7 +2,7 @@
 package com.shopshopista.adminss.controllers.v1;
 
 import java.util.List;
-import com.shopshopista.adminss.models.Admin;
+import com.shopshopista.adminss.models.Admins.Admin;
 import com.shopshopista.adminss.repositorys.AdminRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,10 +35,10 @@ public class AdminCTR {
         return this.adminRepositorio.save(admin);
     }
     
-    @RequestMapping(value = "/elminar/[id]", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/eliminaradmin/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     @CrossOrigin
-    public void elminarAdmin(@PathVariable Long id){
+    public void eliminarAdmin(@PathVariable Long id){
         this.adminRepositorio.eliminarById(id);
     } 
 
