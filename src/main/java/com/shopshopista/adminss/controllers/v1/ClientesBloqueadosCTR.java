@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,13 +36,13 @@ public class ClientesBloqueadosCTR {
     @RequestMapping(value = "/eliminarclientesbloquados/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     @CrossOrigin
-    public void eliminarClienteBloqueado(Long idClienteBloqueado){
+    public void eliminarClienteBloqueado(@PathVariable Long idClienteBloqueado){
         this.clientesBloqRep.eliminarByIdCliBloqueados(idClienteBloqueado);
     }
     
-    @GetMapping("/clientebloqueado/{id}")
+    @RequestMapping(value = "/clientebloqueado/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public ClientesBloqueados getClienteBloqueadoById(Long idClienteBloqueado){
+    public ClientesBloqueados getClienteBloqueadoById(@PathVariable Long idClienteBloqueado){
         return this.clientesBloqRep.buscarPorIdCliBloqueados(idClienteBloqueado);
     }
     

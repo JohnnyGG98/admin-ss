@@ -11,13 +11,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HistorialRutasAdminRep extends JpaRepository<HistorialRutasAdmin, Long>  {
     
-    @Query(value = "SELECT h FROM historial_rutas_admin h WHERE h.hiru_ruta LIKE %:historialRuta%")
+    @Query(value = "SELECT h FROM HistorialRutasAdmin h WHERE h.hiru_ruta LIKE %:historialRuta%")
     List<HistorialRutasAdmin> buscarPorHistorialRuta(@Param("historialRuta") String historialRuta);
     
-    @Query(value = "SELECT h FROM historial_rutas_admin h WHERE h.id_historial_ruta_admin = :idHistorial")
+    @Query(value = "SELECT h FROM HistorialRutasAdmin h WHERE h.id_historial_ruta_admin = :idHistorial")
     HistorialRutasAdmin buscarPorHistorialRutaAdminById(@Param("idHistorial") Long idHistorial);
     
-    @Query(value = "UPDATE historial_rutas_admin h SET h.hiru_activo = false WHERE h.id_historial_ruta_admin = :idHistorialAdmin")
+    @Query(value = "UPDATE HistorialRutasAdmin h SET h.hiru_activo = false WHERE h.id_historial_ruta_admin = :idHistorialAdmin")
     void eliminarByIdHistRuta(@Param("idHistorialAdmin") Long idHistorialAdmin);
     
 }

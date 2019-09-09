@@ -58,7 +58,7 @@ public class Productos {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_marca")
     @JsonBackReference
-    private Marcas marca;
+    private Marcas marcas;
     
     //Falta la relación con el VENDEDOR
     
@@ -85,7 +85,7 @@ public class Productos {
         this.prod_restriccion_edad_max = prod_restriccion_edad_max;
         this.prod_restriccion_edad_min = prod_restriccion_edad_min;
         this.prod_activo = prod_activo;
-        this.marca = marca;
+        this.marcas = marca;
     }
 
     public Long getId_producto() {
@@ -169,11 +169,11 @@ public class Productos {
     }
 
     public Marcas getMarca() {
-        return marca;
+        return marcas;
     }
 
     public void setMarca(Marcas marca) {
-        this.marca = marca;
+        this.marcas = marca;
     }
 
     public List<HistorialProductosVisitas> getHisProductosVisitas() {

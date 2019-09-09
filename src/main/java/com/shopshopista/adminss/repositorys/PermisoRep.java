@@ -11,10 +11,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PermisoRep extends JpaRepository<Permisos, Long>  {
     
-    @Query(value = "SELECT p FROM permisos p WHERE p.id_permiso = :idPermiso")
+    @Query(value = "SELECT p FROM Permisos p WHERE p.id_permiso = :idPermiso")
     Permisos buscarPorIdPermiso(@Param("idPermiso") Long idPermiso);
     
-    @Query(value = "UPDATE permisos p SET p.prem_activo = false WHERE p.id_permiso = :idPermiso")
+    @Query(value = "UPDATE Permisos p SET p.prem_activo = false WHERE p.id_permiso = :idPermiso")
     void eliminarByIdPermiso(@Param("idPermiso") Long idPermiso);
     
 }

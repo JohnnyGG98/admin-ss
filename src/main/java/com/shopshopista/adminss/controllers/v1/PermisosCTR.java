@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,13 +36,13 @@ public class PermisosCTR {
     @RequestMapping(value = "/eliminarPermiso/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     @CrossOrigin
-    public void eliminarPermiso(Long idPermiso){
+    public void eliminarPermiso(@PathVariable Long idPermiso){
         this.permisoRepositorio.eliminarByIdPermiso(idPermiso);
     }
     
     @GetMapping("/permisos/{id}")
     @ResponseBody
-    public Permisos buscaPermisoById(Long idPermiso){
+    public Permisos buscaPermisoById(@PathVariable Long idPermiso){
         return this.permisoRepositorio.buscarPorIdPermiso(idPermiso);
     }
     

@@ -33,6 +33,38 @@ public class VendedoresBloqueados {
         this.vebl_motivo_bloqueo = vebl_motivo_bloqueo;
         this.vebl_activo = vebl_activo;
     }
+
+    public Long getId_vendedor_bloqueado() {
+        return id_vendedor_bloqueado;
+    }
+
+    public void setId_vendedor_bloqueado(Long id_vendedor_bloqueado) {
+        this.id_vendedor_bloqueado = id_vendedor_bloqueado;
+    }
+
+    public Date getVebl_fecha_bloqueo() {
+        return vebl_fecha_bloqueo;
+    }
+
+    public void setVebl_fecha_bloqueo(Date vebl_fecha_bloqueo) {
+        this.vebl_fecha_bloqueo = vebl_fecha_bloqueo;
+    }
+
+    public String getVebl_motivo_bloqueo() {
+        return vebl_motivo_bloqueo;
+    }
+
+    public void setVebl_motivo_bloqueo(String vebl_motivo_bloqueo) {
+        this.vebl_motivo_bloqueo = vebl_motivo_bloqueo;
+    }
+
+    public boolean isVebl_activo() {
+        return vebl_activo;
+    }
+
+    public void setVebl_activo(boolean vebl_activo) {
+        this.vebl_activo = vebl_activo;
+    }
     
     
     

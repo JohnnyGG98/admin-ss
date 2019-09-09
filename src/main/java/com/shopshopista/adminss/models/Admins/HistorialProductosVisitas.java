@@ -30,7 +30,7 @@ public class HistorialProductosVisitas {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_producto")
     @JsonBackReference
-    private Productos producto;
+    private Productos productos;
     
     //Falta la relación con el Cliente
 
@@ -41,7 +41,7 @@ public class HistorialProductosVisitas {
         this.id_historial_producto_visita = id_historial_producto_visita;
         this.hprv_fecha_ingreso = hprv_fecha_ingreso;
         this.cobl_activo = cobl_activo;
-        this.producto = producto;
+        this.productos = producto;
     }
 
     public Long getId_historial_producto_visita() {
@@ -69,11 +69,11 @@ public class HistorialProductosVisitas {
     }
 
     public Productos getProducto() {
-        return producto;
+        return productos;
     }
 
     public void setProducto(Productos producto) {
-        this.producto = producto;
+        this.productos = producto;
     }
     
     

@@ -11,10 +11,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ComentariosBloqueadosRep extends JpaRepository<ComentariosBloqueados, Long>  {
     
-    @Query(value = "SELECT c FROM comentarios_bloqueados c WHERE c.id_comentario_bloqueado = :idComeBloqueado")
+    @Query(value = "SELECT c FROM ComentariosBloqueados c WHERE c.id_comentario_bloqueado = :idComeBloqueado")
     ComentariosBloqueados buscarPorIdComeBloqueados(@Param("idComeBloqueado") Long idComeBloqueado);
     
-    @Query(value = "UPDATE comentarios_bloqueados c SET c.cobl_activo = false WHERE c.id_comentario_bloqueado = :idComeBloqueado")
+    @Query(value = "UPDATE ComentariosBloqueados c SET c.cobl_activo = false WHERE c.id_comentario_bloqueado = :idComeBloqueado")
     void eliminarByIdComeBloqueado(@Param("idComeBloqueado") Long idComeBloqueado);
     
 }

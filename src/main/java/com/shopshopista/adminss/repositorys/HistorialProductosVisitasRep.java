@@ -11,10 +11,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HistorialProductosVisitasRep extends JpaRepository<HistorialProductosVisitas, Long>  {
     
-    @Query(value = "SELECT h FROM historial_productos_visitas h WHERE h.id_historial_producto_visita = :idHisProductosVisita")
+    @Query(value = "SELECT h FROM HistorialProductosVisitas h WHERE h.id_historial_producto_visita = :idHisProductosVisita")
     HistorialProductosVisitas buscarPorIdHisProductosVisita(@Param("idHisProductosVisita") Long idHisProductosVisita);
     
-    @Query(value = "UPDATE historial_productos_visitas h SET h.hprv_activo = false WHERE h.id_historial_producto_visita = :idHisProductosVisita")
+    @Query(value = "UPDATE HistorialProductosVisitas h SET h.cobl_activo = false WHERE h.id_historial_producto_visita = :idHisProductosVisita")
     void eliminarByIdHisProductosVisita(@Param("idHisProductosVisita") Long idHisProductosVisita);
     
 }

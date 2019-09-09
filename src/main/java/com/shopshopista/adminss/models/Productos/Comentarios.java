@@ -34,7 +34,7 @@ public class Comentarios {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonBackReference
     @JoinColumn(name = "id_producto")
-    private Productos producto;
+    private Productos productos;
     
     @JsonManagedReference
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "comentarios")
@@ -47,7 +47,7 @@ public class Comentarios {
         this.id_comentario = id_comentario;
         this.comentario = comentario;
         this.com_activo = com_activo;
-        this.producto = producto;
+        this.productos = producto;
     }
 
     public Long getId_comentario() {
@@ -75,20 +75,20 @@ public class Comentarios {
     }
 
     public Productos getProducto() {
-        return producto;
+        return productos;
     }
 
     public void setProducto(Productos producto) {
-        this.producto = producto;
+        this.productos = producto;
     }
 
-//    public List<ComentariosBloqueados> getComentariosBloqueados() {
-//        return comentariosBloqueados;
-//    }
-//
-//    public void setComentariosBloqueados(List<ComentariosBloqueados> comentariosBloqueados) {
-//        this.comentariosBloqueados = comentariosBloqueados;
-//    }
+    public List<ComentariosBloqueados> getComentariosBloqueados() {
+        return comentariosBloqueados;
+    }
+
+    public void setComentariosBloqueados(List<ComentariosBloqueados> comentariosBloqueados) {
+        this.comentariosBloqueados = comentariosBloqueados;
+    }
     
     
 }

@@ -11,10 +11,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClientesBloqueadosRep extends JpaRepository<ClientesBloqueados, Long>  {
     
-    @Query(value = "SELECT c FROM clientes_bloqueados c WHERE c.id_cliente_bloqueado = :idCliBloqueado%")
+    @Query(value = "SELECT c FROM ClientesBloqueados c WHERE c.id_cliente_bloqueado = :idCliBloqueado")
     ClientesBloqueados buscarPorIdCliBloqueados(@Param("idCliBloqueado") Long idCliBloqueado);
     
-    @Query(value = "UPDATE clientes_bloqueados c SET c.clbl_activo = false WHERE c.id_cliente_bloqueado = :idCliBloqueado")
+    @Query(value = "UPDATE ClientesBloqueados c SET c.clbl_activo = false WHERE c.id_cliente_bloqueado = :idCliBloqueado")
     void eliminarByIdCliBloqueados(@Param("idCliBloqueado") Long idCliBloqueado);
     
 }

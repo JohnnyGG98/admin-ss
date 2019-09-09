@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,13 +36,13 @@ public class HistorialRutasVisitasCTR {
     @RequestMapping(value = "/eliminarhistorialrutavisita/{idHistRutaVisita}", method = RequestMethod.DELETE)
     @ResponseBody
     @CrossOrigin
-    public void elminar_Hist_Ruta_Visita(Long idHistRutaVisita){
+    public void eliminar_Hist_Ruta_Visita(@PathVariable Long idHistRutaVisita){
         this.histRutasVisitasRep.eliminarByIdHisRutasVisitas(idHistRutaVisita);
     }
     
     @GetMapping("/historialrutasvisitas/{idHistRutaVisita}")
     @ResponseBody
-    public HistorialRutasVisitas getHistRutaVisitaById(Long idHistRutaVisita){
+    public HistorialRutasVisitas getHistRutaVisitaById(@PathVariable Long idHistRutaVisita){
         return this.histRutasVisitasRep.buscarPorIdHisRutaVisitas(idHistRutaVisita);
     }
     

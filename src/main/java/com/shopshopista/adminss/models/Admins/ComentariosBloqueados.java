@@ -33,7 +33,7 @@ public class ComentariosBloqueados {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonBackReference
     @JoinColumn(name = "id_comentario")
-    private Comentarios comentario;
+    private Comentarios comentarios;
 
     public ComentariosBloqueados() {
     }
@@ -43,7 +43,7 @@ public class ComentariosBloqueados {
         this.cobl_fecha_bloqueo = cobl_fecha_bloqueo;
         this.cobl_motivo_bloqueo = cobl_motivo_bloqueo;
         this.cobl_activo = cobl_activo;
-        this.comentario = comentario;
+        this.comentarios = comentario;
     }
 
     public Long getId_comentario_bloqueado() {
@@ -79,11 +79,11 @@ public class ComentariosBloqueados {
     }
 
     public Comentarios getComentario() {
-        return comentario;
+        return comentarios;
     }
 
     public void setComentario(Comentarios comentario) {
-        this.comentario = comentario;
+        this.comentarios = comentario;
     }
     
     

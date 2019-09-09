@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +26,7 @@ public class RutasCTR {
         return this.rutasRepositorio.findAll();
     }
     
-    @RequestMapping(value = "/admin", method = RequestMethod.POST)
+    @RequestMapping(value = "/ruta", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
     public Rutas createRuta(Rutas ruta){
@@ -35,19 +36,19 @@ public class RutasCTR {
     @RequestMapping(value = "/eliminarRuta/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     @CrossOrigin
-    public void  eliminarRuta(Long idRuta){
+    public void eliminarRuta(@PathVariable Long idRuta){
         this.rutasRepositorio.eliminarByIdRuta(idRuta);
     }
     
-    @GetMapping("/rutas/{urlruta}")
+    @RequestMapping(value = "/rutas/{urlruta}", method = RequestMethod.GET)
     @ResponseBody
-    public List<Rutas> getRutasByUrl(String urlRuta){
+    public List<Rutas> getRutasByUrl(@PathVariable String urlRuta){
         return this.rutasRepositorio.buscarPorUrlRuta(urlRuta);
     }
     
-    @GetMapping("/rutas/{id}")
+    @RequestMapping(value = "/rutas/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Rutas getRutaById(Long idRuta){
+    public Rutas getRutaById(@PathVariable Long idRuta){
         return this.rutasRepositorio.buscarPorIdRuta(idRuta);
     }
 }
