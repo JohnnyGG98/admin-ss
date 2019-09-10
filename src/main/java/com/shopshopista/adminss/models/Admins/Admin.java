@@ -19,6 +19,7 @@ public class Admin {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id_admin;
+    
     @Column(name = "adm_user", nullable = false)
     private String adm_user;
     @Column(name = "adm_pass", nullable = false)
@@ -26,11 +27,11 @@ public class Admin {
     @Column(name = "adm_activo", nullable = false)
     private boolean adm_activo;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "admin-hr")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "admin")
     private List<HistorialRutasAdmin> histRutasAdmin;
 
-    @JsonManagedReference
+    @JsonManagedReference(value = "admin-permiso")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "admin")
     private List<Permisos> permiso;
 
@@ -44,7 +45,7 @@ public class Admin {
         this.adm_activo = adm_activo;
     }
 
-    public long getId_admin() {
+    public Long getId_admin() {
         return id_admin;
     }
 
@@ -75,6 +76,15 @@ public class Admin {
     public void setAdm_activo(boolean adm_activo) {
         this.adm_activo = adm_activo;
     }
+
+    public List<HistorialRutasAdmin> getHistRutasAdmin() {
+        return histRutasAdmin;
+    }
+
+    public void setHistRutasAdmin(List<HistorialRutasAdmin> histRutasAdmin) {
+        this.histRutasAdmin = histRutasAdmin;
+    }
+
     public List<Permisos> getPermiso() {
         return permiso;
     }
@@ -82,5 +92,7 @@ public class Admin {
     public void setPermiso(List<Permisos> permiso) {
         this.permiso = permiso;
     }
+
+    
 
 }
