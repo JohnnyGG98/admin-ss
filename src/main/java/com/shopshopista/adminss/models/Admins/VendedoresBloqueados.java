@@ -1,12 +1,18 @@
 
 package com.shopshopista.adminss.models.Admins;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.shopshopista.adminss.models.Personas.Vendedor;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +29,11 @@ public class VendedoresBloqueados {
     private String vebl_motivo_bloqueo;
     @Column(name = "vebl_activo")
     private boolean vebl_activo;
+    
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_vendedor")
+    @JsonBackReference
+    private Vendedor id_vendedor;
 
     public VendedoresBloqueados() {
     }

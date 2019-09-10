@@ -2,6 +2,7 @@
 package com.shopshopista.adminss.models.Admins;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.shopshopista.adminss.models.Personas.Cliente;
 import com.shopshopista.adminss.models.Productos.Productos;
 import java.util.Date;
 import javax.persistence.CascadeType;
@@ -31,6 +32,11 @@ public class HistorialProductosVisitas {
     @JoinColumn(name = "id_producto")
     @JsonBackReference
     private Productos productos;
+    
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_cliente")
+    @JsonBackReference
+    private Cliente id_cliente;
     
     //Falta la relación con el Cliente
 

@@ -28,7 +28,7 @@ public class Rutas {
     
     @OneToMany(mappedBy = "rutas", cascade = CascadeType.ALL)
     @JsonManagedReference
-    private List<Permisos> permiso;
+    private List<Permisos> permisos;
 
     public Rutas() {
     }
@@ -64,11 +64,11 @@ public class Rutas {
     }
 
     public List<Permisos> getPermiso() {
-        return permiso;
+        return permisos;
     }
 
     public void setPermiso(List<Permisos> permiso) {
-        this.permiso = permiso;
+        this.permisos = permiso;
     }
     
     
