@@ -26,7 +26,7 @@ public class HistorialRutasAdmin {
     @Column(name = "hiru_activo")
     private boolean hiru_activo;
     
-    @JsonBackReference
+    @JsonBackReference(value = "admin-hr")
     @JoinColumn(name = "id_admin",referencedColumnName = "id_admin")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Admin admin;

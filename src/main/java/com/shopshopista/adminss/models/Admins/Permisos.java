@@ -1,7 +1,6 @@
 
 package com.shopshopista.adminss.models.Admins;
 
-import com.shopshopista.adminss.models.Admins.Admin;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,7 +25,7 @@ public class Permisos {
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_admin")
-    @JsonBackReference
+    @JsonBackReference(value = "admin-permiso")
     private Admin admin;
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
