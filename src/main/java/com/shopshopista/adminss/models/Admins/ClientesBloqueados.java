@@ -32,7 +32,7 @@ public class ClientesBloqueados {
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_cliente")
-    @JsonBackReference
+    @JsonBackReference(value = "cliente-bloq")
     private Cliente id_cliente;
 
     public ClientesBloqueados() {

@@ -35,7 +35,7 @@ public class HistorialProductosVisitas {
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_cliente")
-    @JsonBackReference
+    @JsonBackReference(value = "cliente-hist-produ-visitas")
     private Cliente id_cliente;
     
     //Falta la relación con el Cliente

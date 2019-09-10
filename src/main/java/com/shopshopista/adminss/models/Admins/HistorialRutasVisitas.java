@@ -33,7 +33,7 @@ public class HistorialRutasVisitas {
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_cliente")
-    @JsonBackReference
+    @JsonBackReference(value = "cliente-hist-rutas-visitas")
     private Cliente id_cliente;
 
     public HistorialRutasVisitas() {
