@@ -24,8 +24,8 @@ public class HistorialProductosVisitas {
     private Long id_historial_producto_visita;
     @Column(name = "hprv_fecha_ingreso", nullable = false)
     private Date hprv_fecha_ingreso;
-    @Column(name = "cobl_activo", nullable = false)
-    private boolean cobl_activo;
+    @Column(name = "hprv_activo", nullable = false)
+    private boolean hprv_activo;
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_producto")
@@ -40,7 +40,7 @@ public class HistorialProductosVisitas {
     public HistorialProductosVisitas(Long id_historial_producto_visita, Date hprv_fecha_ingreso, boolean cobl_activo, Productos producto) {
         this.id_historial_producto_visita = id_historial_producto_visita;
         this.hprv_fecha_ingreso = hprv_fecha_ingreso;
-        this.cobl_activo = cobl_activo;
+        this.hprv_activo = cobl_activo;
         this.productos = producto;
     }
 
@@ -61,11 +61,11 @@ public class HistorialProductosVisitas {
     }
 
     public boolean isCobl_activo() {
-        return cobl_activo;
+        return hprv_activo;
     }
 
     public void setCobl_activo(boolean cobl_activo) {
-        this.cobl_activo = cobl_activo;
+        this.hprv_activo = cobl_activo;
     }
 
     public Productos getProducto() {

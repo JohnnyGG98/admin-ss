@@ -14,7 +14,7 @@ public interface HistorialProductosVisitasRep extends JpaRepository<HistorialPro
     @Query(value = "SELECT h FROM HistorialProductosVisitas h WHERE h.id_historial_producto_visita = :idHisProductosVisita")
     HistorialProductosVisitas buscarPorIdHisProductosVisita(@Param("idHisProductosVisita") Long idHisProductosVisita);
     
-    @Query(value = "UPDATE HistorialProductosVisitas h SET h.cobl_activo = false WHERE h.id_historial_producto_visita = :idHisProductosVisita")
+    @Query(value = "UPDATE HistorialProductosVisitas h SET h.hprv_activo = false WHERE h.id_historial_producto_visita = :idHisProductosVisita")
     void eliminarByIdHisProductosVisita(@Param("idHisProductosVisita") Long idHisProductosVisita);
     
 }
