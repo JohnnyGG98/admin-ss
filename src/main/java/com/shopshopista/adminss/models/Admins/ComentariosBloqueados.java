@@ -16,7 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ComentariosBloqueados")
+@Table(name = "\"ComentariosBloqueados\"")
 public class ComentariosBloqueados {
     
     @Id
