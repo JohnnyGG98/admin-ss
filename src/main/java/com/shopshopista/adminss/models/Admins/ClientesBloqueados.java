@@ -2,7 +2,6 @@
 package com.shopshopista.adminss.models.Admins;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.shopshopista.adminss.models.Personas.Cliente;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,6 +22,8 @@ public class ClientesBloqueados {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id_cliente_bloqueado;
+    @Column(name = "id_cliente", nullable = false)
+    private Long id_cliente;
     @Column(name = "clbl_fecha_bloqueo", nullable = false)
     private Date clbl_fecha_bloqueo;
     @Column(name = "clbl_motivo_bloqueo", nullable = false)
@@ -30,16 +31,14 @@ public class ClientesBloqueados {
     @Column(name = "clbl_activo")
     private boolean clbl_activo;
     
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_cliente")
-    @JsonBackReference(value = "cliente-bloq")
-    private Cliente id_cliente;
+ 
 
     public ClientesBloqueados() {
     }
 
-    public ClientesBloqueados(Long id_cliente_bloqueado, Date clbl_fecha_bloqueo, String clbl_motivo_bloqueo, boolean clbl_activo) {
+    public ClientesBloqueados(Long id_cliente_bloqueado, Long id_cliente, Date clbl_fecha_bloqueo, String clbl_motivo_bloqueo, boolean clbl_activo) {
         this.id_cliente_bloqueado = id_cliente_bloqueado;
+        this.id_cliente = id_cliente;
         this.clbl_fecha_bloqueo = clbl_fecha_bloqueo;
         this.clbl_motivo_bloqueo = clbl_motivo_bloqueo;
         this.clbl_activo = clbl_activo;
@@ -75,6 +74,14 @@ public class ClientesBloqueados {
 
     public void setClbl_activo(boolean clbl_activo) {
         this.clbl_activo = clbl_activo;
+    }
+
+    public Long getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(Long id_cliente) {
+        this.id_cliente = id_cliente;
     }
     
     

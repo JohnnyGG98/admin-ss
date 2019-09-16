@@ -3,7 +3,6 @@ package com.shopshopista.adminss.models.Admins;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.shopshopista.adminss.models.Personas.Cliente;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,23 +23,21 @@ public class HistorialRutasVisitas {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id_historial_ruta_visitas;
+    @Column(name = "id_cliente", nullable = false)
+    private Long id_cliente;
     @Column(name = "hruv_ruta", nullable = false)
     private String hruv_ruta;
     @Column(name = "hruv_fecha_ingreso", nullable = false)
     private Date hruv_fecha_ingreso;
     @Column(name = "hruv_activo", nullable = false)
     private boolean hruv_activo;
-    
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_cliente")
-    @JsonBackReference(value = "cliente-hist-rutas-visitas")
-    private Cliente id_cliente;
 
     public HistorialRutasVisitas() {
     }
 
-    public HistorialRutasVisitas(Long id_historial_ruta_visitas, String hruv_ruta, Date hruv_fecha_ingreso, boolean hruv_activo) {
+    public HistorialRutasVisitas(Long id_historial_ruta_visitas, Long id_cliente, String hruv_ruta, Date hruv_fecha_ingreso, boolean hruv_activo) {
         this.id_historial_ruta_visitas = id_historial_ruta_visitas;
+        this.id_cliente = id_cliente;
         this.hruv_ruta = hruv_ruta;
         this.hruv_fecha_ingreso = hruv_fecha_ingreso;
         this.hruv_activo = hruv_activo;
@@ -78,8 +75,12 @@ public class HistorialRutasVisitas {
         this.hruv_activo = hruv_activo;
     }
 
-   
-    
-    
+    public Long getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(Long id_cliente) {
+        this.id_cliente = id_cliente;
+    }
     
 }

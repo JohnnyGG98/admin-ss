@@ -2,7 +2,6 @@
 package com.shopshopista.adminss.models.Admins;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.shopshopista.adminss.models.Productos.Comentarios;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,29 +22,26 @@ public class ComentariosBloqueados {
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id_comentario_bloqueado", nullable = false)
     private Long id_comentario_bloqueado;
+    @Column(name = "id_comentario", nullable = false)
+    private Long id_comentario;
     @Column(name = "cobl_fecha_bloqueo", nullable = false)
     private Date cobl_fecha_bloqueo;
     @Column(name = "cobl_motivo_bloqueo", nullable = false)
     private String cobl_motivo_bloqueo;
     @Column(name = "cobl_activo")
     private boolean cobl_activo;
-    
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JsonBackReference
-    @JoinColumn(name = "id_comentario")
-    private Comentarios comentarios;
 
     public ComentariosBloqueados() {
     }
 
-    public ComentariosBloqueados(Long id_comentario_bloqueado, Date cobl_fecha_bloqueo, String cobl_motivo_bloqueo, boolean cobl_activo, Comentarios comentario) {
+    public ComentariosBloqueados(Long id_comentario_bloqueado, Long id_comentario, Date cobl_fecha_bloqueo, String cobl_motivo_bloqueo, boolean cobl_activo) {
         this.id_comentario_bloqueado = id_comentario_bloqueado;
+        this.id_comentario = id_comentario;
         this.cobl_fecha_bloqueo = cobl_fecha_bloqueo;
         this.cobl_motivo_bloqueo = cobl_motivo_bloqueo;
         this.cobl_activo = cobl_activo;
-        this.comentarios = comentario;
     }
-
+    
     public Long getId_comentario_bloqueado() {
         return id_comentario_bloqueado;
     }
@@ -78,14 +74,13 @@ public class ComentariosBloqueados {
         this.cobl_activo = cobl_activo;
     }
 
-    public Comentarios getComentario() {
-        return comentarios;
+    public Long getId_comentario() {
+        return id_comentario;
     }
 
-    public void setComentario(Comentarios comentario) {
-        this.comentarios = comentario;
+    public void setId_comentario(Long id_comentario) {
+        this.id_comentario = id_comentario;
     }
-    
-    
+
     
 }

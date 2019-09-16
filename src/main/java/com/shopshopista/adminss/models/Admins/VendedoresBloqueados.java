@@ -2,7 +2,6 @@
 package com.shopshopista.adminss.models.Admins;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.shopshopista.adminss.models.Personas.Vendedor;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,23 +22,21 @@ public class VendedoresBloqueados {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id_vendedor_bloqueado;
+    @Column(name = "id_vendedor", nullable = false)
+    private Long id_vendedor;
     @Column(name = "vebl_fecha_bloqueo", nullable = false)
     private Date vebl_fecha_bloqueo;
     @Column(name = "vebl_motivo_bloqueo", nullable = false)
     private String vebl_motivo_bloqueo;
     @Column(name = "vebl_activo")
     private boolean vebl_activo;
-    
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_vendedor")
-    @JsonBackReference(value = "vendedor-bloq")
-    private Vendedor id_vendedor;
 
     public VendedoresBloqueados() {
     }
 
-    public VendedoresBloqueados(Long id_vendedor_bloqueado, Date vebl_fecha_bloqueo, String vebl_motivo_bloqueo, boolean vebl_activo) {
+    public VendedoresBloqueados(Long id_vendedor_bloqueado, Long id_vendedor, Date vebl_fecha_bloqueo, String vebl_motivo_bloqueo, boolean vebl_activo) {
         this.id_vendedor_bloqueado = id_vendedor_bloqueado;
+        this.id_vendedor = id_vendedor;
         this.vebl_fecha_bloqueo = vebl_fecha_bloqueo;
         this.vebl_motivo_bloqueo = vebl_motivo_bloqueo;
         this.vebl_activo = vebl_activo;
@@ -75,6 +72,14 @@ public class VendedoresBloqueados {
 
     public void setVebl_activo(boolean vebl_activo) {
         this.vebl_activo = vebl_activo;
+    }
+
+    public Long getId_vendedor() {
+        return id_vendedor;
+    }
+
+    public void setId_vendedor(Long id_vendedor) {
+        this.id_vendedor = id_vendedor;
     }
     
     

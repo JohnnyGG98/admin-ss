@@ -2,8 +2,6 @@
 package com.shopshopista.adminss.models.Admins;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.shopshopista.adminss.models.Personas.Cliente;
-import com.shopshopista.adminss.models.Productos.Productos;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,31 +21,24 @@ public class HistorialProductosVisitas {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id_historial_producto_visita;
+    @Column(name = "id_cliente", nullable = false)
+    private Long id_cliente;
+    @Column(name = "id_producto", nullable = false)
+    private Long id_producto;
     @Column(name = "hprv_fecha_ingreso", nullable = false)
     private Date hprv_fecha_ingreso;
     @Column(name = "hprv_activo", nullable = false)
     private boolean hprv_activo;
-    
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_producto")
-    @JsonBackReference
-    private Productos productos;
-    
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_cliente")
-    @JsonBackReference(value = "cliente-hist-produ-visitas")
-    private Cliente id_cliente;
-    
-    //Falta la relación con el Cliente
 
     public HistorialProductosVisitas() {
     }
 
-    public HistorialProductosVisitas(Long id_historial_producto_visita, Date hprv_fecha_ingreso, boolean cobl_activo, Productos producto) {
+    public HistorialProductosVisitas(Long id_historial_producto_visita, Long id_cliente, Long id_producto, Date hprv_fecha_ingreso, boolean hprv_activo) {
         this.id_historial_producto_visita = id_historial_producto_visita;
+        this.id_cliente = id_cliente;
+        this.id_producto = id_producto;
         this.hprv_fecha_ingreso = hprv_fecha_ingreso;
-        this.hprv_activo = cobl_activo;
-        this.productos = producto;
+        this.hprv_activo = hprv_activo;
     }
 
     public Long getId_historial_producto_visita() {
@@ -74,12 +65,28 @@ public class HistorialProductosVisitas {
         this.hprv_activo = cobl_activo;
     }
 
-    public Productos getProducto() {
-        return productos;
+    public Long getId_cliente() {
+        return id_cliente;
     }
 
-    public void setProducto(Productos producto) {
-        this.productos = producto;
+    public void setId_cliente(Long id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+    public Long getId_producto() {
+        return id_producto;
+    }
+
+    public void setId_producto(Long id_producto) {
+        this.id_producto = id_producto;
+    }
+
+    public boolean isHprv_activo() {
+        return hprv_activo;
+    }
+
+    public void setHprv_activo(boolean hprv_activo) {
+        this.hprv_activo = hprv_activo;
     }
     
     
