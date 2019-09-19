@@ -15,7 +15,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "\"ClientesBloqueados\"")
+@Table(
+        name = "\"ClientesBloqueados\"",
+         schema = "admin"
+)
 public class ClientesBloqueados {
     
     //Falta foránea

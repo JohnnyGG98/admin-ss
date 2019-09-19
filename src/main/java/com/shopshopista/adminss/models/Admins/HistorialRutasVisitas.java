@@ -17,7 +17,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "\"HistorialRutasVisitas\"")
+@Table(
+        name = "\"HistorialRutasVisitas\"",
+        schema = "admin"
+)
 public class HistorialRutasVisitas {
     
     @Id
