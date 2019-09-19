@@ -14,33 +14,33 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/admin")
+@RequestMapping("/api/v1/vendedoresBloqueados")
 public class VendedoresBloqueadosCTR {
     
     @Autowired
     private VendedoresBloqueadosRep vendedoresBloqRepositorio;
     
-    @GetMapping("/vendedoresBloqueados")
+    @GetMapping("/")
     @CrossOrigin
     public List<VendedoresBloqueados> getAllVendedoresBloqueados(){
         return this.vendedoresBloqRepositorio.findAll();
     }
     
-    @RequestMapping(value = "/guardarvendedorbloqueado", method = RequestMethod.POST)
+    @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
     public VendedoresBloqueados createVendedorBloqueado(VendedoresBloqueados vendedorBloqueado){
         return this.vendedoresBloqRepositorio.save(vendedorBloqueado);
     }
     
-    @RequestMapping(value = "/eliminarVendedorBloqueado/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     @CrossOrigin
     public void eliminarVendedorBloqueado(@PathVariable Long idVendedorBloqueado){
         this.vendedoresBloqRepositorio.eliminarByIdVenBloqueados(idVendedorBloqueado);
     }
     
-    @GetMapping("/vendedorBloqueado/{id}")
+    @GetMapping("/{id}")
     @ResponseBody
     public VendedoresBloqueados getVendedorBloqueadoById(@PathVariable Long idVendedorBloq){
         return this.getVendedorBloqueadoById(idVendedorBloq);
