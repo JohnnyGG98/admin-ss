@@ -4,6 +4,7 @@ package com.shopshopista.adminss.controllers.v1;
 import com.shopshopista.adminss.models.Admins.Permisos;
 import com.shopshopista.adminss.repositorys.PermisoRep;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/admin")
 public class PermisosCTR {
     
     @Autowired
@@ -26,10 +27,10 @@ public class PermisosCTR {
         return this.permisoRepositorio.findAll();
     }
     
-    @RequestMapping(value = "/permiso", method = RequestMethod.POST)
+    @RequestMapping(value = "/guardarpermiso", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public Permisos createPermiso(Permisos permiso){
+    public Permisos createPermiso(@Valid Permisos permiso){
         return this.permisoRepositorio.save(permiso);
     }
     

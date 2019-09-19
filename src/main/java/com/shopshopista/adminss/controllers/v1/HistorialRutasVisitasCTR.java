@@ -4,6 +4,7 @@ package com.shopshopista.adminss.controllers.v1;
 import com.shopshopista.adminss.models.Admins.HistorialRutasVisitas;
 import com.shopshopista.adminss.repositorys.HistorialRutasVisitasRep;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/admin")
 public class HistorialRutasVisitasCTR {
     
     @Autowired
@@ -26,10 +27,10 @@ public class HistorialRutasVisitasCTR {
         return this.histRutasVisitasRep.findAll();
     }
     
-    @RequestMapping(value = "/historialrutavisita", method = RequestMethod.POST)
+    @RequestMapping(value = "/guardarhistorialrutavisita", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public HistorialRutasVisitas createHistRutaVisita(HistorialRutasVisitas histRutaVisita){
+    public HistorialRutasVisitas createHistRutaVisita(@Valid HistorialRutasVisitas histRutaVisita){
         return this.histRutasVisitasRep.save(histRutaVisita);
     }
     

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/admin")
 public class VendedoresBloqueadosCTR {
     
     @Autowired
@@ -26,7 +26,7 @@ public class VendedoresBloqueadosCTR {
         return this.vendedoresBloqRepositorio.findAll();
     }
     
-    @RequestMapping(value = "/vendedorbloqueado", method = RequestMethod.POST)
+    @RequestMapping(value = "/guardarvendedorbloqueado", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
     public VendedoresBloqueados createVendedorBloqueado(VendedoresBloqueados vendedorBloqueado){

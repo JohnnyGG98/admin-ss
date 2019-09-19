@@ -4,6 +4,7 @@ package com.shopshopista.adminss.controllers.v1;
 import com.shopshopista.adminss.models.Admins.Rutas;
 import com.shopshopista.adminss.repositorys.RutasRep;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/admin")
 public class RutasCTR {
     
     @Autowired
@@ -26,10 +27,10 @@ public class RutasCTR {
         return this.rutasRepositorio.findAll();
     }
     
-    @RequestMapping(value = "/ruta", method = RequestMethod.POST)
+    @RequestMapping(value = "/guardarruta", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public Rutas createRuta(Rutas ruta){
+    public Rutas createRuta(@Valid Rutas ruta){
         return this.rutasRepositorio.save(ruta);
     }
     

@@ -4,6 +4,7 @@ package com.shopshopista.adminss.controllers.v1;
 import com.shopshopista.adminss.models.Admins.HistorialProductosVisitas;
 import com.shopshopista.adminss.repositorys.HistorialProductosVisitasRep;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/admin")
 public class HistorialProductosVisitasCTR {
     
     @Autowired
@@ -26,10 +27,10 @@ public class HistorialProductosVisitasCTR {
         return this.historialProductosVisitasRep.findAll();
     }
     
-    @RequestMapping(value = "/historialproductovisita", method = RequestMethod.POST)
+    @RequestMapping(value = "/guardarhistorialproductovisita", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public HistorialProductosVisitas createHistorialProductoVisita(HistorialProductosVisitas historialProductosVisitas){
+    public HistorialProductosVisitas createHistorialProductoVisita(@Valid HistorialProductosVisitas historialProductosVisitas){
         return this.historialProductosVisitasRep.save(historialProductosVisitas);
     }
     

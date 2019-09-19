@@ -4,6 +4,7 @@ package com.shopshopista.adminss.controllers.v1;
 import com.shopshopista.adminss.models.Admins.RolesRutas;
 import com.shopshopista.adminss.repositorys.RolesRutasRep;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/admin")
 public class RolesRutasCTR {
     
     @Autowired
@@ -27,10 +28,10 @@ public class RolesRutasCTR {
         return this.rolesRutasRep.findAll();
     }
 
-    @RequestMapping(value = "/rolruta", method = RequestMethod.POST)
+    @RequestMapping(value = "/guardarrolruta", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public RolesRutas createRolRuta(@RequestBody RolesRutas rolRuta) {
+    public RolesRutas createRolRuta(@Valid @RequestBody RolesRutas rolRuta) {
         return this.rolesRutasRep.save(rolRuta);
     }
     
