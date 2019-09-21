@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/cliente/bloqueado")
+@RequestMapping("/api/v1/clientebloqueado")
 public class ClientesBloqueadosCTR {
     
     @Autowired
@@ -35,14 +35,14 @@ public class ClientesBloqueadosCTR {
         return this.clientesBloqRep.save(clienteBloq);
     }
     
-    @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/eliminar/{idClienteBloqueado}", method = RequestMethod.DELETE)
     @ResponseBody
     @CrossOrigin
     public void eliminarClienteBloqueado(@PathVariable Long idClienteBloqueado){
         this.clientesBloqRep.eliminarByIdCliBloqueados(idClienteBloqueado);
     }
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{idClienteBloqueado}", method = RequestMethod.GET)
     @ResponseBody
     public ClientesBloqueados getClienteBloqueadoById(@PathVariable Long idClienteBloqueado){
         return this.clientesBloqRep.buscarPorIdCliBloqueados(idClienteBloqueado);
