@@ -17,39 +17,39 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/admin")
+@RequestMapping("/api/v1/rolesadmin")
 public class RolesAdminCTR {
     
     @Autowired
     private RolesAdminRep rolesAdminRep;
     
-    @GetMapping("/rolesadmin")
+    @GetMapping("/")
     @CrossOrigin
     public List<RolesAdmin> getAllRolesAdmin(){
         return this.rolesAdminRep.findAll();
     }
     
-    @RequestMapping(value = "/guardarroladmin", method = RequestMethod.POST)
+    @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
     public RolesAdmin createRolAdmin(@Valid @RequestBody RolesAdmin rolAdmin){
         return this.rolesAdminRep.save(rolAdmin);
     }
     
-    @RequestMapping(value = "/eliminarroladmin/{idRol}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/eliminar/{idRol}", method = RequestMethod.DELETE)
     @ResponseBody
     @CrossOrigin
     public void eliminarRolAdmin(@PathVariable Long idRolAdmin){
         this.rolesAdminRep.eliminarByIdRolAdmin(idRolAdmin);
     } 
     
-    @GetMapping("/rolesadmin/{nombreRolAdmin}")
+    @GetMapping("/{nombreRolAdmin}")
     @ResponseBody
     public List<RolesAdmin> getRolesAdminByNombre(@PathVariable String nombreRolAdmin) {
         return this.rolesAdminRep.buscarPorNombreRolAdmin(nombreRolAdmin);
     }
     
-    @GetMapping("/rolesadmin/{idRolAdmin}")
+    @GetMapping("/{idRolAdmin}")
     @ResponseBody
     public RolesAdmin getRolesAdminById(@PathVariable Long idRolAdmin) {
         return this.rolesAdminRep.buscarPorIdRolAdmin(idRolAdmin);

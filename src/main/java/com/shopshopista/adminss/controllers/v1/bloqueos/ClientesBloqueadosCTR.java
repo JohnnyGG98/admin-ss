@@ -4,43 +4,45 @@ package com.shopshopista.adminss.controllers.v1.bloqueos;
 import com.shopshopista.adminss.models.Admins.bloqueos.ClientesBloqueados;
 import com.shopshopista.adminss.repositorys.bloqueos.ClientesBloqueadosRep;
 import java.util.List;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/admin")
+@RequestMapping("/api/v1/clientebloqueado")
 public class ClientesBloqueadosCTR {
     
     @Autowired
     private ClientesBloqueadosRep clientesBloqRep;
     
-    @GetMapping("/clientesbloqueados")
+    @GetMapping("/")
     @CrossOrigin
     public List<ClientesBloqueados> getAllClientesBloquados(){
         return this.clientesBloqRep.findAll();
     }
     
-    @RequestMapping(value = "/clientebloqueado", method = RequestMethod.POST)
+    @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public ClientesBloqueados createClienteBloqueado(ClientesBloqueados clienteBloq){
+    public ClientesBloqueados createClienteBloqueado(@Valid @RequestBody ClientesBloqueados clienteBloq){
         return this.clientesBloqRep.save(clienteBloq);
     }
     
-    @RequestMapping(value = "/eliminarclientesbloquados/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/eliminar/{idClienteBloqueado}", method = RequestMethod.DELETE)
     @ResponseBody
     @CrossOrigin
     public void eliminarClienteBloqueado(@PathVariable Long idClienteBloqueado){
         this.clientesBloqRep.eliminarByIdCliBloqueados(idClienteBloqueado);
     }
     
-    @RequestMapping(value = "/clientebloqueado/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{idClienteBloqueado}", method = RequestMethod.GET)
     @ResponseBody
     public ClientesBloqueados getClienteBloqueadoById(@PathVariable Long idClienteBloqueado){
         return this.clientesBloqRep.buscarPorIdCliBloqueados(idClienteBloqueado);

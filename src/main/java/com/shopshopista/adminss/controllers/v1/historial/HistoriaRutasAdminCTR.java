@@ -16,19 +16,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/admin")
+@RequestMapping("/api/v1/historialrutas")
 public class HistoriaRutasAdminCTR {
     
     @Autowired
     private HistorialRutasAdminRep hisRutasAdminRepositorio;
     
-    @GetMapping("/historialrutas")
+    @GetMapping("/")
     @CrossOrigin
     public List<HistorialRutasAdmin> getAllHistRutasAdmins(){
         return this.hisRutasAdminRepositorio.findAll();
     }
     
-    @RequestMapping(value = "/guardarhistorialrutas", method = RequestMethod.POST)
+    @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
     
@@ -36,20 +36,20 @@ public class HistoriaRutasAdminCTR {
         return this.hisRutasAdminRepositorio.save(histRutasAdmin);
     }
     
-    @RequestMapping(value = "/eliminarhistorialrutas/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     @CrossOrigin
     public void eliminarHistRutasAdmin(@PathVariable Long id){
         this.hisRutasAdminRepositorio.eliminarByIdHistRuta(id);
     } 
     
-    @GetMapping("/historialrutas/{historialruta}")
+    @GetMapping("/{historialruta}")
     @ResponseBody
     public List<HistorialRutasAdmin> getHistRutasAdminByRuta(@PathVariable String historialRuta) {
         return this.hisRutasAdminRepositorio.buscarPorHistorialRuta(historialRuta);
     }
     
-    @GetMapping("/historialrutas/{id}")
+    @GetMapping("/{id}")
     @ResponseBody
     public HistorialRutasAdmin getHistRutasAdminById(@PathVariable Long historialRutaAdminId) {
         return this.hisRutasAdminRepositorio.buscarPorHistorialRutaAdminById(historialRutaAdminId);

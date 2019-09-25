@@ -16,33 +16,33 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/admin")
+@RequestMapping("/api/v1/rolesrutas")
 public class RolesRutasCTR {
     
     @Autowired
     private RolesRutasRep rolesRutasRep;
     
-    @GetMapping("/rolesrutas")
+    @GetMapping("/")
     @CrossOrigin
     public List<RolesRutas> getAllRolesRutas() {
         return this.rolesRutasRep.findAll();
     }
 
-    @RequestMapping(value = "/guardarrolruta", method = RequestMethod.POST)
+    @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
     public RolesRutas createRolRuta(@Valid @RequestBody RolesRutas rolRuta) {
         return this.rolesRutasRep.save(rolRuta);
     }
     
-    @RequestMapping(value = "/eliminarrolruta/{idRol}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/eliminar/{idRol}", method = RequestMethod.DELETE)
     @ResponseBody
     @CrossOrigin
     public void eliminarRolRuta(@PathVariable Long idRolRuta){
         this.rolesRutasRep.eliminarByIdRolRuta(idRolRuta);
     } 
     
-    @GetMapping("/rolesrutas/{idRolRuta}")
+    @GetMapping("/{idRolRuta}")
     @ResponseBody
     public RolesRutas getRolesRutaById(@PathVariable Long idRolRuta) {
         return this.rolesRutasRep.buscarPorIdRolRuta(idRolRuta);

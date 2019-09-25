@@ -9,45 +9,46 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/admin")
+@RequestMapping("/api/v1/rutas")
 public class RutasCTR {
     
     @Autowired
     private RutasRep rutasRepositorio;
     
-    @GetMapping("/rutas")
+    @GetMapping("/")
     @CrossOrigin
     public List<Rutas> getAllRutas(){
         return this.rutasRepositorio.findAll();
     }
     
-    @RequestMapping(value = "/guardarruta", method = RequestMethod.POST)
+    @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
     @CrossOrigin
-    public Rutas createRuta(@Valid Rutas ruta){
+    public Rutas createRuta(@Valid @RequestBody Rutas ruta){
         return this.rutasRepositorio.save(ruta);
     }
     
-    @RequestMapping(value = "/eliminarRuta/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     @CrossOrigin
     public void eliminarRuta(@PathVariable Long idRuta){
         this.rutasRepositorio.eliminarByIdRuta(idRuta);
     }
     
-    @RequestMapping(value = "/rutas/{urlruta}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{urlruta}", method = RequestMethod.GET)
     @ResponseBody
     public List<Rutas> getRutasByUrl(@PathVariable String urlRuta){
         return this.rutasRepositorio.buscarPorUrlRuta(urlRuta);
     }
     
-    @RequestMapping(value = "/rutas/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Rutas getRutaById(@PathVariable Long idRuta){
         return this.rutasRepositorio.buscarPorIdRuta(idRuta);
