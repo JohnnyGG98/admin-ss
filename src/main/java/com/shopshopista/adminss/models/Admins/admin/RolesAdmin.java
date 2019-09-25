@@ -13,8 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Where;
 
-@Entity
+@Where(clause = "rolad_activo = true")
+@Entity(
+        name = "RolesAdmin"
+)
 @Table(
         name = "\"Rolesadmin\"",
         schema = "admin"
@@ -22,12 +26,12 @@ import javax.persistence.Table;
 public class RolesAdmin {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id_rol_admin;
     @Column(name = "rlad_nombre", nullable = false)
     private String rlad_nombre;
     @Column(name = "rlad_activo", nullable = false)
-    private boolean rlad_activo;
+    private boolean rlad_activo = true;
     
     @JsonManagedReference(value = "roles-admin")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "rolesAdmin")

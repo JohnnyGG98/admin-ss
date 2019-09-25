@@ -1,8 +1,6 @@
 
 package com.shopshopista.adminss.models.Admins.admin;
 
-import com.shopshopista.adminss.models.Admins.admin.RolesRutas;
-import com.shopshopista.adminss.models.Admins.admin.Permisos;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -14,8 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Where;
 
-@Entity
+@Where(clause = "rut_activo = true")
+@Entity(
+        name = "Rutas"
+)
 @Table(
         name = "\"Rutas\"",
         schema = "admin"
@@ -23,12 +25,12 @@ import javax.persistence.Table;
 public class Rutas {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id_ruta;
     @Column(name = "rut_url", nullable = false)
     private String rut_url;
     @Column(name = "rut_activo")
-    private boolean rut_activo;
+    private boolean rut_activo = true;
     
     @OneToMany(mappedBy = "rutas", cascade = CascadeType.ALL)
     @JsonManagedReference

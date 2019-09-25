@@ -3,6 +3,7 @@ package com.shopshopista.adminss.models.Admins.admin;
 import com.shopshopista.adminss.models.Admins.historial.HistorialRutasAdmin;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,16 +16,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Where;
 
-@Entity
+@Where(clause = "adm_activo = true")
+@Entity(
+        name = "Admin"
+)
 @Table(
         name = "\"Admins\"",
         schema = "admin"
 )
-public class Admin {
+public class Admin implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id_admin;
     
     @Column(name = "adm_user", nullable = false)
@@ -32,7 +37,7 @@ public class Admin {
     @Column(name = "adm_pass", nullable = false)
     private String adm_pass;
     @Column(name = "adm_activo", nullable = false)
-    private boolean adm_activo;
+    private boolean adm_activo = true;
 
     @JsonManagedReference(value = "admin-hr")
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "admin")
@@ -48,13 +53,6 @@ public class Admin {
     private RolesAdmin rolesAdmin;
 
     public Admin() {
-    }
-
-    public Admin(long id_admin, String adm_user, String adm_pass, boolean adm_activo) {
-        this.id_admin = id_admin;
-        this.adm_user = adm_user;
-        this.adm_pass = adm_pass;
-        this.adm_activo = adm_activo;
     }
 
     public Long getId_admin() {
@@ -105,6 +103,12 @@ public class Admin {
         this.permiso = permiso;
     }
 
-    
+    public RolesAdmin getRolesAdmin() {
+        return rolesAdmin;
+    }
+
+    public void setRolesAdmin(RolesAdmin rolesAdmin) {
+        this.rolesAdmin = rolesAdmin;
+    }
 
 }

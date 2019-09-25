@@ -1,8 +1,7 @@
-
 package com.shopshopista.adminss.models.Admins.admin;
 
-import com.shopshopista.adminss.models.Admins.admin.Admin;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,19 +12,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Where;
 
-@Entity
+@Where(clause = "prem_activo = true")
+@Entity(
+        name = "Permisos"
+)
 @Table(
         name = "\"Permisos\"",
         schema = "admin"
 )
-public class Permisos {
+public class Permisos implements Serializable{
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id_permiso;
     @Column(name = "prem_activo")
-    private boolean prem_activo;
+    private boolean prem_activo = true;
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_admin")

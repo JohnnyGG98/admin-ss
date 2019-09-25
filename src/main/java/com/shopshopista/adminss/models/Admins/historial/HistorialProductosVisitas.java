@@ -1,47 +1,40 @@
-
 package com.shopshopista.adminss.models.Admins.historial;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import java.util.Date;
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Where;
 
-@Entity
+@Where(clause = "hprv_activo = true")
+@Entity(
+        name = "HistorialProductosVisitas"
+)
 @Table(
         name = "\"HistorialProductosVisitas\"",
         schema = "admin"
 )
-public class HistorialProductosVisitas {
-    
+public class HistorialProductosVisitas implements Serializable {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_historial_producto_visita;
     @Column(name = "id_cliente", nullable = false)
     private Long id_cliente;
     @Column(name = "id_producto", nullable = false)
     private Long id_producto;
     @Column(name = "hprv_fecha_ingreso", nullable = false)
-    private Date hprv_fecha_ingreso;
+    private LocalDateTime hprv_fecha_ingreso = ZonedDateTime.now(ZoneId.of("America/Guayaquil")).toLocalDateTime();
     @Column(name = "hprv_activo", nullable = false)
     private boolean hprv_activo;
 
     public HistorialProductosVisitas() {
-    }
-
-    public HistorialProductosVisitas(Long id_historial_producto_visita, Long id_cliente, Long id_producto, Date hprv_fecha_ingreso, boolean hprv_activo) {
-        this.id_historial_producto_visita = id_historial_producto_visita;
-        this.id_cliente = id_cliente;
-        this.id_producto = id_producto;
-        this.hprv_fecha_ingreso = hprv_fecha_ingreso;
-        this.hprv_activo = hprv_activo;
     }
 
     public Long getId_historial_producto_visita() {
@@ -50,14 +43,6 @@ public class HistorialProductosVisitas {
 
     public void setId_historial_producto_visita(Long id_historial_producto_visita) {
         this.id_historial_producto_visita = id_historial_producto_visita;
-    }
-
-    public Date getHprv_fecha_ingreso() {
-        return hprv_fecha_ingreso;
-    }
-
-    public void setHprv_fecha_ingreso(Date hprv_fecha_ingreso) {
-        this.hprv_fecha_ingreso = hprv_fecha_ingreso;
     }
 
     public boolean isCobl_activo() {
@@ -91,7 +76,13 @@ public class HistorialProductosVisitas {
     public void setHprv_activo(boolean hprv_activo) {
         this.hprv_activo = hprv_activo;
     }
-    
-    
-    
+
+    public LocalDateTime getHprv_fecha_ingreso() {
+        return hprv_fecha_ingreso;
+    }
+
+    public void setHprv_fecha_ingreso(LocalDateTime hprv_fecha_ingreso) {
+        this.hprv_fecha_ingreso = hprv_fecha_ingreso;
+    }
+
 }

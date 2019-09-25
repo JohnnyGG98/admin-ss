@@ -13,8 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Where;
 
-@Entity
+@Where(clause = "roro_activo = true")
+@Entity(
+        name = "RolesRutas"
+)
 @Table(
         name = "\"Rolesrutas\"",
         schema = "admin"
@@ -22,10 +26,10 @@ import javax.persistence.Table;
 public class RolesRutas {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id_rol_ruta;
     @Column(name = "roru_activo")
-    private boolean roru_activo;
+    private boolean roru_activo = true;
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_rol_admin")

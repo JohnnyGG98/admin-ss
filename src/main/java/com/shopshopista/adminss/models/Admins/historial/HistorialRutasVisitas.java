@@ -1,49 +1,40 @@
-
 package com.shopshopista.adminss.models.Admins.historial;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import java.util.Date;
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.Where;
 
-@Entity
+@Where(clause = "hruv_activo = true")
+@Entity(
+        name = "HistorialRutasVisitas"
+)
 @Table(
         name = "\"HistorialRutasVisitas\"",
         schema = "admin"
 )
-public class HistorialRutasVisitas {
-    
+public class HistorialRutasVisitas implements Serializable {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_historial_ruta_visitas;
     @Column(name = "id_cliente", nullable = false)
     private Long id_cliente;
     @Column(name = "hruv_ruta", nullable = false)
     private String hruv_ruta;
     @Column(name = "hruv_fecha_ingreso", nullable = false)
-    private Date hruv_fecha_ingreso;
+    private LocalDateTime hruv_fecha_ingreso = ZonedDateTime.now(ZoneId.of("America/Guayaquil")).toLocalDateTime();
     @Column(name = "hruv_activo", nullable = false)
-    private boolean hruv_activo;
+    private boolean hruv_activo = true;
 
     public HistorialRutasVisitas() {
-    }
-
-    public HistorialRutasVisitas(Long id_historial_ruta_visitas, Long id_cliente, String hruv_ruta, Date hruv_fecha_ingreso, boolean hruv_activo) {
-        this.id_historial_ruta_visitas = id_historial_ruta_visitas;
-        this.id_cliente = id_cliente;
-        this.hruv_ruta = hruv_ruta;
-        this.hruv_fecha_ingreso = hruv_fecha_ingreso;
-        this.hruv_activo = hruv_activo;
     }
 
     public Long getId_historial_ruta_visitas() {
@@ -62,14 +53,6 @@ public class HistorialRutasVisitas {
         this.hruv_ruta = hruv_ruta;
     }
 
-    public Date getHruv_fecha_ingreso() {
-        return hruv_fecha_ingreso;
-    }
-
-    public void setHruv_fecha_ingreso(Date hruv_fecha_ingreso) {
-        this.hruv_fecha_ingreso = hruv_fecha_ingreso;
-    }
-
     public boolean isHruv_activo() {
         return hruv_activo;
     }
@@ -85,5 +68,13 @@ public class HistorialRutasVisitas {
     public void setId_cliente(Long id_cliente) {
         this.id_cliente = id_cliente;
     }
-    
+
+    public LocalDateTime getHruv_fecha_ingreso() {
+        return hruv_fecha_ingreso;
+    }
+
+    public void setHruv_fecha_ingreso(LocalDateTime hruv_fecha_ingreso) {
+        this.hruv_fecha_ingreso = hruv_fecha_ingreso;
+    }
+
 }

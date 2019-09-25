@@ -1,48 +1,41 @@
-
 package com.shopshopista.adminss.models.Admins.bloqueos;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import java.util.Date;
-import javax.persistence.CascadeType;
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Where;
 
-@Entity
+@Where(clause = "vebl_activo = true")
+@Entity(
+        name = "VendedoresBloqueados"
+)
 @Table(
         name = "\"VendedoresBloqueados\"",
-         schema = "admin"
+        schema = "admin"
 )
-public class VendedoresBloqueados {
-    
+public class VendedoresBloqueados implements Serializable {
+
     //Falta foránea
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_vendedor_bloqueado;
     @Column(name = "id_vendedor", nullable = false)
     private Long id_vendedor;
     @Column(name = "vebl_fecha_bloqueo", nullable = false)
-    private Date vebl_fecha_bloqueo;
+    private LocalDateTime vebl_fecha_bloqueo = ZonedDateTime.now(ZoneId.of("America/Guayaquil")).toLocalDateTime();
     @Column(name = "vebl_motivo_bloqueo", nullable = false)
     private String vebl_motivo_bloqueo;
     @Column(name = "vebl_activo")
-    private boolean vebl_activo;
+    private boolean vebl_activo = true;
 
     public VendedoresBloqueados() {
-    }
-
-    public VendedoresBloqueados(Long id_vendedor_bloqueado, Long id_vendedor, Date vebl_fecha_bloqueo, String vebl_motivo_bloqueo, boolean vebl_activo) {
-        this.id_vendedor_bloqueado = id_vendedor_bloqueado;
-        this.id_vendedor = id_vendedor;
-        this.vebl_fecha_bloqueo = vebl_fecha_bloqueo;
-        this.vebl_motivo_bloqueo = vebl_motivo_bloqueo;
-        this.vebl_activo = vebl_activo;
     }
 
     public Long getId_vendedor_bloqueado() {
@@ -51,14 +44,6 @@ public class VendedoresBloqueados {
 
     public void setId_vendedor_bloqueado(Long id_vendedor_bloqueado) {
         this.id_vendedor_bloqueado = id_vendedor_bloqueado;
-    }
-
-    public Date getVebl_fecha_bloqueo() {
-        return vebl_fecha_bloqueo;
-    }
-
-    public void setVebl_fecha_bloqueo(Date vebl_fecha_bloqueo) {
-        this.vebl_fecha_bloqueo = vebl_fecha_bloqueo;
     }
 
     public String getVebl_motivo_bloqueo() {
@@ -84,7 +69,13 @@ public class VendedoresBloqueados {
     public void setId_vendedor(Long id_vendedor) {
         this.id_vendedor = id_vendedor;
     }
-    
-    
-    
+
+    public LocalDateTime getVebl_fecha_bloqueo() {
+        return vebl_fecha_bloqueo;
+    }
+
+    public void setVebl_fecha_bloqueo(LocalDateTime vebl_fecha_bloqueo) {
+        this.vebl_fecha_bloqueo = vebl_fecha_bloqueo;
+    }
+
 }
