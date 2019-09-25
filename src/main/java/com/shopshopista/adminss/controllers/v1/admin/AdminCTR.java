@@ -13,33 +13,30 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 @RequestMapping("/api/v1/admin")
+@CrossOrigin("*")
 public class AdminCTR {
-    
+
     @Autowired
     private AdminRep adminRepositorio;
-    
+
     @GetMapping("/")
-    @CrossOrigin
     public List<Admin> getAllAdmins() {
         return this.adminRepositorio.findAll();
     }
 
     @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
-    @CrossOrigin
     public Admin createAdmin(@RequestBody Admin admin) {
         return this.adminRepositorio.save(admin);
     }
-    
+
     @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    @CrossOrigin
-    public void eliminarAdmin(@PathVariable Long id){
+    public void eliminarAdmin(@PathVariable Long id) {
         this.adminRepositorio.eliminarById(id);
-    } 
+    }
 
     @GetMapping("/{nombre}")
     @ResponseBody
@@ -47,4 +44,3 @@ public class AdminCTR {
         return this.adminRepositorio.buscarPorUsuario(nombre);
     }
 }
-

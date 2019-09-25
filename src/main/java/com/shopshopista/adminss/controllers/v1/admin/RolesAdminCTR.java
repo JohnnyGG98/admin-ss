@@ -1,7 +1,5 @@
-
 package com.shopshopista.adminss.controllers.v1.admin;
 
-import com.shopshopista.adminss.models.Admins.admin.Admin;
 import com.shopshopista.adminss.models.Admins.admin.RolesAdmin;
 import com.shopshopista.adminss.repositorys.admin.RolesAdminRep;
 import java.util.List;
@@ -17,38 +15,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/rolesadmin")
+@RequestMapping("/api/v1/rol/admin")
+@CrossOrigin("*")
 public class RolesAdminCTR {
-    
+
     @Autowired
     private RolesAdminRep rolesAdminRep;
-    
+
     @GetMapping("/")
-    @CrossOrigin
-    public List<RolesAdmin> getAllRolesAdmin(){
+    public List<RolesAdmin> getAllRolesAdmin() {
         return this.rolesAdminRep.findAll();
     }
-    
+
     @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
-    @CrossOrigin
-    public RolesAdmin createRolAdmin(@Valid @RequestBody RolesAdmin rolAdmin){
+    public RolesAdmin createRolAdmin(@Valid @RequestBody RolesAdmin rolAdmin) {
         return this.rolesAdminRep.save(rolAdmin);
     }
-    
+
     @RequestMapping(value = "/eliminar/{idRol}", method = RequestMethod.DELETE)
     @ResponseBody
-    @CrossOrigin
-    public void eliminarRolAdmin(@PathVariable Long idRolAdmin){
+    public void eliminarRolAdmin(@PathVariable Long idRolAdmin) {
         this.rolesAdminRep.eliminarByIdRolAdmin(idRolAdmin);
-    } 
-    
+    }
+
     @GetMapping("/{nombreRolAdmin}")
     @ResponseBody
     public List<RolesAdmin> getRolesAdminByNombre(@PathVariable String nombreRolAdmin) {
         return this.rolesAdminRep.buscarPorNombreRolAdmin(nombreRolAdmin);
     }
-    
+
     @GetMapping("/{idRolAdmin}")
     @ResponseBody
     public RolesAdmin getRolesAdminById(@PathVariable Long idRolAdmin) {

@@ -1,4 +1,3 @@
-
 package com.shopshopista.adminss.controllers.v1.bloqueos;
 
 import com.shopshopista.adminss.models.Admins.bloqueos.VendedoresBloqueados;
@@ -14,36 +13,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/vendedoresBloqueados")
+@RequestMapping("/api/v1/vendedor/bloqueado")
+@CrossOrigin("*")
 public class VendedoresBloqueadosCTR {
-    
+
     @Autowired
     private VendedoresBloqueadosRep vendedoresBloqRepositorio;
-    
+
     @GetMapping("/")
-    @CrossOrigin
-    public List<VendedoresBloqueados> getAllVendedoresBloqueados(){
+    public List<VendedoresBloqueados> getAllVendedoresBloqueados() {
         return this.vendedoresBloqRepositorio.findAll();
     }
-    
+
     @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
-    @CrossOrigin
-    public VendedoresBloqueados createVendedorBloqueado(VendedoresBloqueados vendedorBloqueado){
+    public VendedoresBloqueados createVendedorBloqueado(VendedoresBloqueados vendedorBloqueado) {
         return this.vendedoresBloqRepositorio.save(vendedorBloqueado);
     }
-    
+
     @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    @CrossOrigin
-    public void eliminarVendedorBloqueado(@PathVariable Long idVendedorBloqueado){
+    public void eliminarVendedorBloqueado(@PathVariable Long idVendedorBloqueado) {
         this.vendedoresBloqRepositorio.eliminarByIdVenBloqueados(idVendedorBloqueado);
     }
-    
+
     @GetMapping("/{id}")
     @ResponseBody
-    public VendedoresBloqueados getVendedorBloqueadoById(@PathVariable Long idVendedorBloq){
+    public VendedoresBloqueados getVendedorBloqueadoById(@PathVariable Long idVendedorBloq) {
         return this.getVendedorBloqueadoById(idVendedorBloq);
     }
-    
+
 }

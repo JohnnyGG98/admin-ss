@@ -1,4 +1,3 @@
-
 package com.shopshopista.adminss.controllers.v1.admin;
 
 import com.shopshopista.adminss.models.Admins.admin.Rutas;
@@ -17,40 +16,38 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/rutas")
+@CrossOrigin("*")
 public class RutasCTR {
-    
+
     @Autowired
     private RutasRep rutasRepositorio;
-    
+
     @GetMapping("/")
-    @CrossOrigin
-    public List<Rutas> getAllRutas(){
+    public List<Rutas> getAllRutas() {
         return this.rutasRepositorio.findAll();
     }
-    
+
     @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
-    @CrossOrigin
-    public Rutas createRuta(@Valid @RequestBody Rutas ruta){
+    public Rutas createRuta(@Valid @RequestBody Rutas ruta) {
         return this.rutasRepositorio.save(ruta);
     }
-    
+
     @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    @CrossOrigin
-    public void eliminarRuta(@PathVariable Long idRuta){
+    public void eliminarRuta(@PathVariable Long idRuta) {
         this.rutasRepositorio.eliminarByIdRuta(idRuta);
     }
-    
+
     @RequestMapping(value = "/{urlruta}", method = RequestMethod.GET)
     @ResponseBody
-    public List<Rutas> getRutasByUrl(@PathVariable String urlRuta){
+    public List<Rutas> getRutasByUrl(@PathVariable String urlRuta) {
         return this.rutasRepositorio.buscarPorUrlRuta(urlRuta);
     }
-    
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public Rutas getRutaById(@PathVariable Long idRuta){
+    public Rutas getRutaById(@PathVariable Long idRuta) {
         return this.rutasRepositorio.buscarPorIdRuta(idRuta);
     }
 }

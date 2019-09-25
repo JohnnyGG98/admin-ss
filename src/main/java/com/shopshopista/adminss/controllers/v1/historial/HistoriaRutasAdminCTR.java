@@ -1,4 +1,3 @@
-
 package com.shopshopista.adminss.controllers.v1.historial;
 
 import com.shopshopista.adminss.models.Admins.historial.HistorialRutasAdmin;
@@ -16,39 +15,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/historialrutas")
+@RequestMapping("/api/v1/historial/rutas")
+@CrossOrigin("*")
 public class HistoriaRutasAdminCTR {
-    
+
     @Autowired
     private HistorialRutasAdminRep hisRutasAdminRepositorio;
-    
+
     @GetMapping("/")
-    @CrossOrigin
-    public List<HistorialRutasAdmin> getAllHistRutasAdmins(){
+    public List<HistorialRutasAdmin> getAllHistRutasAdmins() {
         return this.hisRutasAdminRepositorio.findAll();
     }
-    
+
     @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
-    @CrossOrigin
-    
     public HistorialRutasAdmin createHistorialRutasAdmin(@Valid @RequestBody HistorialRutasAdmin histRutasAdmin) {
         return this.hisRutasAdminRepositorio.save(histRutasAdmin);
     }
-    
+
     @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    @CrossOrigin
-    public void eliminarHistRutasAdmin(@PathVariable Long id){
+    public void eliminarHistRutasAdmin(@PathVariable Long id) {
         this.hisRutasAdminRepositorio.eliminarByIdHistRuta(id);
-    } 
-    
+    }
+
     @GetMapping("/{historialruta}")
     @ResponseBody
     public List<HistorialRutasAdmin> getHistRutasAdminByRuta(@PathVariable String historialRuta) {
         return this.hisRutasAdminRepositorio.buscarPorHistorialRuta(historialRuta);
     }
-    
+
     @GetMapping("/{id}")
     @ResponseBody
     public HistorialRutasAdmin getHistRutasAdminById(@PathVariable Long historialRutaAdminId) {

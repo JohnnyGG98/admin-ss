@@ -1,4 +1,3 @@
-
 package com.shopshopista.adminss.controllers.v1.historial;
 
 import com.shopshopista.adminss.models.Admins.historial.HistorialProductosVisitas;
@@ -16,36 +15,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/historialproductosvisitas")
+@RequestMapping("/api/v1/historial/producto/visitas")
+@CrossOrigin("*")
 public class HistorialProductosVisitasCTR {
-    
+
     @Autowired
     private HistorialProductosVisitasRep historialProductosVisitasRep;
-    
+
     @GetMapping("/")
-    @CrossOrigin
-    public List<HistorialProductosVisitas> getAllHistorialProduVisitas(){
+    public List<HistorialProductosVisitas> getAllHistorialProduVisitas() {
         return this.historialProductosVisitasRep.findAll();
     }
-    
+
     @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
-    @CrossOrigin
-    public HistorialProductosVisitas createHistorialProductoVisita(@Valid @RequestBody HistorialProductosVisitas historialProductosVisitas){
+    public HistorialProductosVisitas createHistorialProductoVisita(@Valid @RequestBody HistorialProductosVisitas historialProductosVisitas) {
         return this.historialProductosVisitasRep.save(historialProductosVisitas);
     }
-    
+
     @RequestMapping(value = "/eliminar/{idHistProductoVisita}", method = RequestMethod.DELETE)
     @ResponseBody
-    @CrossOrigin
-    public void eliminar_Historial_Producto_Visita(@PathVariable Long idHistProductoVisita){
+    public void eliminar_Historial_Producto_Visita(@PathVariable Long idHistProductoVisita) {
         this.historialProductosVisitasRep.eliminarByIdHisProductosVisita(idHistProductoVisita);
     }
-    
+
     @GetMapping("/{idHistProductoVisita}")
     @ResponseBody
-    public HistorialProductosVisitas getHistoProductoVisitaById(@PathVariable Long idHistProductoVisita){
+    public HistorialProductosVisitas getHistoProductoVisitaById(@PathVariable Long idHistProductoVisita) {
         return this.historialProductosVisitasRep.buscarPorIdHisProductosVisita(idHistProductoVisita);
     }
-    
+
 }

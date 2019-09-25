@@ -1,4 +1,3 @@
-
 package com.shopshopista.adminss.controllers.v1.bloqueos;
 
 import com.shopshopista.adminss.models.Admins.bloqueos.ClientesBloqueados;
@@ -16,37 +15,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/clientebloqueado")
+@RequestMapping("/api/v1/cliente/bloqueado")
+@CrossOrigin("*")
 public class ClientesBloqueadosCTR {
-    
+
     @Autowired
     private ClientesBloqueadosRep clientesBloqRep;
-    
+
     @GetMapping("/")
-    @CrossOrigin
-    public List<ClientesBloqueados> getAllClientesBloquados(){
+    public List<ClientesBloqueados> getAllClientesBloquados() {
         return this.clientesBloqRep.findAll();
     }
-    
+
     @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
-    @CrossOrigin
-    public ClientesBloqueados createClienteBloqueado(@Valid @RequestBody ClientesBloqueados clienteBloq){
+    public ClientesBloqueados createClienteBloqueado(@Valid @RequestBody ClientesBloqueados clienteBloq) {
         return this.clientesBloqRep.save(clienteBloq);
     }
-    
+
     @RequestMapping(value = "/eliminar/{idClienteBloqueado}", method = RequestMethod.DELETE)
     @ResponseBody
-    @CrossOrigin
-    public void eliminarClienteBloqueado(@PathVariable Long idClienteBloqueado){
+    public void eliminarClienteBloqueado(@PathVariable Long idClienteBloqueado) {
         this.clientesBloqRep.eliminarByIdCliBloqueados(idClienteBloqueado);
     }
-    
+
     @RequestMapping(value = "/{idClienteBloqueado}", method = RequestMethod.GET)
     @ResponseBody
-    public ClientesBloqueados getClienteBloqueadoById(@PathVariable Long idClienteBloqueado){
+    public ClientesBloqueados getClienteBloqueadoById(@PathVariable Long idClienteBloqueado) {
         return this.clientesBloqRep.buscarPorIdCliBloqueados(idClienteBloqueado);
     }
-    
-    
+
 }

@@ -1,4 +1,3 @@
-
 package com.shopshopista.adminss.controllers.v1.admin;
 
 import com.shopshopista.adminss.models.Admins.admin.Permisos;
@@ -16,36 +15,34 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/permisos")
+@RequestMapping("/api/v1/permiso")
+@CrossOrigin("*")
 public class PermisosCTR {
-    
+
     @Autowired
     private PermisoRep permisoRepositorio;
-    
+
     @GetMapping("/")
-    @CrossOrigin
-    public List<Permisos> getAllPermisos(){
+    public List<Permisos> getAllPermisos() {
         return this.permisoRepositorio.findAll();
     }
-    
+
     @RequestMapping(value = "/guardar", method = RequestMethod.POST)
     @ResponseBody
-    @CrossOrigin
-    public Permisos createPermiso(@Valid @RequestBody Permisos permiso){
+    public Permisos createPermiso(@Valid @RequestBody Permisos permiso) {
         return this.permisoRepositorio.save(permiso);
     }
-    
+
     @RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    @CrossOrigin
-    public void eliminarPermiso(@PathVariable Long idPermiso){
+    public void eliminarPermiso(@PathVariable Long idPermiso) {
         this.permisoRepositorio.eliminarByIdPermiso(idPermiso);
     }
-    
+
     @GetMapping("/permisos/{id}")
     @ResponseBody
-    public Permisos buscaPermisoById(@PathVariable Long idPermiso){
+    public Permisos buscaPermisoById(@PathVariable Long idPermiso) {
         return this.permisoRepositorio.buscarPorIdPermiso(idPermiso);
     }
-    
+
 }
