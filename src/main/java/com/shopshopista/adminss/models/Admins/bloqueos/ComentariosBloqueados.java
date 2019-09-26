@@ -14,7 +14,7 @@ import org.hibernate.annotations.Where;
 
 @Where(clause = "cobl_activo = true")
 @Entity(
-        name = "ComentarioBloqueados"
+        name = "ComentariosBloqueados"
 )
 @Table(
         name = "\"ComentariosBloqueados\"",
